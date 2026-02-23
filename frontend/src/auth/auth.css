@@ -1,0 +1,141 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f1f5f9;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+}
+
+.auth-card,
+.auth-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.auth-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #0f172a;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 16px;
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+.auth-body {
+  margin-top: 24px;
+}
+
+.auth-footer {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.auth-card input,
+.auth-card select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 16px;
+  font-family: Inter, system-ui, sans-serif;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.auth-card input:focus,
+.auth-card select:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30,58,138,0.1);
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Inter, system-ui, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.auth-card button:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(30,58,138,0.3);
+}
+
+.auth-card button:active {
+  transform: translateY(0);
+}
+
+.link {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 16px;
+  }
+  
+  .auth-card,
+  .auth-box {
+    padding: 32px 24px;
+    margin: 12px;
+    border-radius: 14px;
+  }
+  
+  .auth-header h1 {
+    font-size: 24px;
+  }
+  
+  .auth-subtitle {
+    font-size: 15px;
+  }
+}
