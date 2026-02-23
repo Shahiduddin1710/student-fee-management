@@ -65,14 +65,19 @@ This system allows administrators to manage students, track fee payments, calcul
 
 ## 🖼 Application Screenshots
 
-### 🔑 Login Page
-![Login](assets/screenshots/login.png)
 
 ### 📝 Signup Page
 ![Signup](assets/screenshots/signup.png)
 
 ### 📧 Email Verification
 ![Verify Email](assets/screenshots/verify-email.png)
+
+### 📧 Email Verification Mail
+
+![Email Verification](assets/screenshots/mail-verify.png)
+
+### 🔑 Login Page
+![Login](assets/screenshots/login.png)
 
 ### 🔐 Admin Portal Key
 ![Portal Key](assets/screenshots/portal-key.png)
@@ -92,8 +97,7 @@ This system allows administrators to manage students, track fee payments, calcul
 ### 📈 Reports Page
 ![Reports](assets/screenshots/reports.png)
 
-### ❌ Delete Confirmation Modal
-![Delete Modal](assets/screenshots/delete-modal.png)
+
 
 ---
 
