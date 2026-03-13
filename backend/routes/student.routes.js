@@ -3,9 +3,8 @@ import db from "../database/db.js";
 
 const router = express.Router();
 
-/* ==============================
-   ADD STUDENT
-============================== */
+//add student
+
 router.post("/add", async (req, res) => {
   try {
     const { full_name, email, phone, branch_name, year, total_fee } = req.body;
@@ -27,7 +26,6 @@ router.post("/add", async (req, res) => {
       });
     }
 
-    // Phone validation (exactly 10 digits)
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(phone)) {
       return res.status(400).json({
@@ -84,9 +82,8 @@ router.post("/add", async (req, res) => {
 });
 
 
-/* ==============================
-   GET ALL STUDENTS
-============================== */
+//get students
+
 router.get("/", async (req, res) => {
   try {
     const [students] = await db.query(`
@@ -123,9 +120,8 @@ router.get("/", async (req, res) => {
 });
 
 
-/* ==============================
-   ADD PAYMENT
-============================== */
+//add payment
+
 router.post("/:id/payment", async (req, res) => {
   try {
     const { id } = req.params;
@@ -193,9 +189,8 @@ router.post("/:id/payment", async (req, res) => {
   }
 });
 
-/* ==============================
-   DELETE STUDENT
-============================== */
+//delete students
+
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -214,9 +209,8 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-/* ==============================
-   REPORT SUMMARY
-============================== */
+//report
+
 router.get("/reports/summary", async (req, res) => {
   try {
     const [totalFees] = await db.query(

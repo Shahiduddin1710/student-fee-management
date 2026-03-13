@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { sendVerificationMail } from "../emailVerify/sendVerificationMail.js";
 
-/* ================= REGISTER ================= */
+//register
 
 export const registerUser = async (req, res) => {
   try {
@@ -73,7 +73,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
-/* ================= EMAIL VERIFICATION ================= */
+//email verification
 
 export const verification = async (req, res) => {
   try {
@@ -134,7 +134,7 @@ export const verification = async (req, res) => {
   }
 };
 
-/* ================= LOGIN ================= */
+//login
 
 export const loginUser = async (req, res) => {
   try {
@@ -199,7 +199,7 @@ export const loginUser = async (req, res) => {
   }
 };
 
-/* ================= COMPLETE PROFILE ================= */
+//complete profile
 
 export const completeProfile = async (req, res) => {
   try {
@@ -221,7 +221,7 @@ export const completeProfile = async (req, res) => {
   }
 };
 
-/* ================= ENTER PORTAL ================= */
+//enter portal key
 
 export const enterPortal = async (req, res) => {
   try {
@@ -257,7 +257,7 @@ export const enterPortal = async (req, res) => {
   }
 };
 
-/* ================= CHANGE PASSWORD ================= */
+//change password
 
 export const changePassword = async (req, res) => {
   try {
