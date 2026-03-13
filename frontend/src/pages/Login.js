@@ -18,6 +18,8 @@ export default function Login() {
   const infoMessage =
     params.get("verified") === "true"
       ? "Email verified successfully. Please login."
+      : params.get("reset") === "true"
+      ? "Password reset successfully. Please login."
       : null;
 
   const handleChange = (e) => {
@@ -128,6 +130,10 @@ export default function Login() {
               onChange={handleChange}
               required
             />
+
+            <div className="login-forgot">
+              <Link to="/forgot-password">Forgot password?</Link>
+            </div>
 
             <button disabled={loading}>
               {loading ? "Logging in..." : "Login"}

@@ -12,6 +12,9 @@ import Signup from "./pages/Signup";
 import VerifyEmailSent from "./pages/VerifyEmailSent";
 import CompleteProfile from "./pages/CompleteProfile";
 import Dashboard from "./pages/Dashboard";
+import ForgotPassword from "./pages/ForgotPassword";
+import VerifyOtp from "./pages/VerifyOtp";
+import ResetPassword from "./pages/ResetPassword";
 
 import AddStudent from "./pages/AddStudent";
 import ViewStudents from "./pages/Students";
@@ -67,6 +70,33 @@ export default function App() {
             element={
               <PublicRoute>
                 <Signup />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/forgot-password"
+            element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/verify-otp/:email"
+            element={
+              <PublicRoute>
+                <VerifyOtp />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/reset-password/:email"
+            element={
+              <PublicRoute>
+                <ResetPassword />
               </PublicRoute>
             }
           />

@@ -1,9 +1,7 @@
 import db from "../database/db.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { sendVerificationMail } from "../emailVerify/sendVerificationMail.js";
-
-//register
+import { sendVerificationMail, sendOtpMail } from "../emailVerify/sendVerificationMail.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -73,8 +71,6 @@ export const registerUser = async (req, res) => {
   }
 };
 
-//email verification
-
 export const verification = async (req, res) => {
   try {
     const { token } = req.params;
@@ -133,8 +129,6 @@ export const verification = async (req, res) => {
     );
   }
 };
-
-//login
 
 export const loginUser = async (req, res) => {
   try {
@@ -199,8 +193,6 @@ export const loginUser = async (req, res) => {
   }
 };
 
-//complete profile
-
 export const completeProfile = async (req, res) => {
   try {
     const { branch, year } = req.body;
@@ -220,8 +212,6 @@ export const completeProfile = async (req, res) => {
     return res.status(500).json({ success: false });
   }
 };
-
-//enter portal key
 
 export const enterPortal = async (req, res) => {
   try {
@@ -256,8 +246,6 @@ export const enterPortal = async (req, res) => {
     return res.status(500).json({ success: false });
   }
 };
-
-//change password
 
 export const changePassword = async (req, res) => {
   try {
@@ -306,4 +294,183 @@ export const logoutUser = async (req, res) => {
     success: true,
     message: "Logged out successfully",
   });
+};
+
+export const sendForgotPasswordOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email is required",
+      });
+    }
+
+    const lowerEmail = email.toLowerCase();
+
+    const [rows] = await db.execute(
+      "SELECT * FROM users WHERE email = ?",
+      [lowerEmail]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No account found with this email",
+      });
+    }
+
+    const user = rows[0];
+
+    if (!user.is_verified) {
+      return res.status(400).json({
+        success: false,
+        message: "Please verify your email first",
+      });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+    await db.execute(
+      "DELETE FROM password_reset_otps WHERE email = ?",
+      [lowerEmail]
+    );
+
+    await db.execute(
+      "INSERT INTO password_reset_otps (email, otp, expires_at) VALUES (?, ?, ?)",
+      [lowerEmail, otp, expiresAt]
+    );
+
+    await sendOtpMail(lowerEmail, otp);
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP sent to your email",
+    });
+
+  } catch {
+    return res.status(500).json({ success: false });
+  }
+};
+
+export const verifyForgotPasswordOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and OTP are required",
+      });
+    }
+
+    const lowerEmail = email.toLowerCase();
+
+    const [rows] = await db.execute(
+      "SELECT * FROM password_reset_otps WHERE email = ? ORDER BY created_at DESC LIMIT 1",
+      [lowerEmail]
+    );
+
+    if (rows.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "OTP not found. Please request a new one",
+      });
+    }
+
+    const record = rows[0];
+
+    if (new Date() > new Date(record.expires_at)) {
+      await db.execute(
+        "DELETE FROM password_reset_otps WHERE email = ?",
+        [lowerEmail]
+      );
+      return res.status(400).json({
+        success: false,
+        message: "OTP has expired. Please request a new one",
+      });
+    }
+
+    if (record.otp !== otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP",
+      });
+    }
+
+    await db.execute(
+      "UPDATE password_reset_otps SET verified = true WHERE email = ?",
+      [lowerEmail]
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP verified successfully",
+    });
+
+  } catch {
+    return res.status(500).json({ success: false });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and new password are required",
+      });
+    }
+
+    const lowerEmail = email.toLowerCase();
+
+    const [rows] = await db.execute(
+      "SELECT * FROM password_reset_otps WHERE email = ? AND verified = true ORDER BY created_at DESC LIMIT 1",
+      [lowerEmail]
+    );
+
+    if (rows.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "OTP not verified. Please verify OTP first",
+      });
+    }
+
+    const record = rows[0];
+
+    if (new Date() > new Date(record.expires_at)) {
+      await db.execute(
+        "DELETE FROM password_reset_otps WHERE email = ?",
+        [lowerEmail]
+      );
+      return res.status(400).json({
+        success: false,
+        message: "Session expired. Please start again",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await db.execute(
+      "UPDATE users SET password = ? WHERE email = ?",
+      [hashedPassword, lowerEmail]
+    );
+
+    await db.execute(
+      "DELETE FROM password_reset_otps WHERE email = ?",
+      [lowerEmail]
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successfully",
+    });
+
+  } catch {
+    return res.status(500).json({ success: false });
+  }
 };

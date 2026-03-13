@@ -18,7 +18,6 @@ export default function AddStudent() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Prevent non-numeric typing in phone field
     if (name === "phone") {
       if (!/^\d*$/.test(value)) return;
     }
@@ -41,7 +40,6 @@ export default function AddStudent() {
     const trimmedPhone = formData.phone.trim();
     const totalFeeNumber = Number(formData.totalFees);
 
-    // Basic validation
     if (
       !trimmedName ||
       !trimmedEmail ||
@@ -61,7 +59,7 @@ export default function AddStudent() {
       return;
     }
 
-    // Phone validation (exactly 10 digits)
+    // Phone validation
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(trimmedPhone)) {
       setError("Phone number must be exactly 10 digits and numeric only.");

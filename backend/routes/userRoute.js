@@ -7,6 +7,9 @@ import {
   completeProfile,
   enterPortal,
   changePassword,
+  sendForgotPasswordOtp,
+  verifyForgotPasswordOtp,
+  resetPassword,
 } from "../controllers/userController.js";
 
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
@@ -14,6 +17,9 @@ import {
   registerSchema,
   loginSchema,
   changePasswordSchema,
+  forgotPasswordSchema,
+  verifyOtpSchema,
+  resetPasswordSchema,
   validate,
 } from "../validators/userValidate.js";
 
@@ -32,5 +38,9 @@ router.put(
   validate(changePasswordSchema),
   changePassword
 );
+
+router.post("/forgot-password", validate(forgotPasswordSchema), sendForgotPasswordOtp);
+router.post("/verify-otp", validate(verifyOtpSchema), verifyForgotPasswordOtp);
+router.post("/reset-password", validate(resetPasswordSchema), resetPassword);
 
 export default router;

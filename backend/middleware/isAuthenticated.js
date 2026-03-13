@@ -16,7 +16,7 @@ export const isAuthenticated = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-    // ✅ FIX HERE (user_id instead of id)
+   
     const [rows] = await db.execute(
       "SELECT user_id, username, email, role, profile_completed FROM users WHERE user_id = ?",
       [decoded.user_id]

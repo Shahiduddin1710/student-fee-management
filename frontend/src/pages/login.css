@@ -73,12 +73,29 @@
   border: 1px solid #e2e8f0;
   font-size: 14px;
   transition: 0.2s ease;
+  box-sizing: border-box;
 }
 
 .login-card input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   outline: none;
+}
+
+.login-forgot {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 16px;
+}
+
+.login-forgot a {
+  font-size: 13px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.login-forgot a:hover {
+  text-decoration: underline;
 }
 
 .login-card button {
@@ -96,6 +113,11 @@
 
 .login-card button:hover {
   opacity: 0.9;
+}
+
+.login-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .login-footer {
