@@ -6,7 +6,7 @@ This system allows administrators to manage students, track fee payments, calcul
 
 ---
 
-## 🔐 Authentication & Security
+##Authentication & Security
 
 - Email verification system
 - JWT-based authentication
@@ -17,27 +17,27 @@ This system allows administrators to manage students, track fee payments, calcul
 
 ---
 
-## 📊 Core Features
+## Core Features
 
-### 👨‍🎓 Student Management
+### Student Management
 - Add new students
 - Assign branch & year
 - View all registered students
 - Delete students with confirmation modal
 
-### 💳 Fee Management
+### Fee Management
 - Record payments
 - Prevent overpayment
 - Auto calculate:
   - Total Paid
   - Pending Amount
 
-### 📈 Reports Dashboard
+### Reports Dashboard
 - Total Fees Collected
 - Total Pending Fees
 - Clean summary cards
 
-### 🧠 Smart UI System
+### Smart UI System
 - Fixed Sidebar + Top Navbar layout
 - Responsive design
 - Modern corporate SaaS theme
@@ -46,7 +46,7 @@ This system allows administrators to manage students, track fee payments, calcul
 
 ---
 
-## 🏗 Tech Stack
+## Tech Stack
 
 ### Frontend
 - React.js
@@ -63,89 +63,46 @@ This system allows administrators to manage students, track fee payments, calcul
 ---
 
 
-## 🖼 Application Screenshots
+## Application Screenshots
 
 
-### 📝 Signup Page
+### Signup Page
 ![Signup](assets/screenshots/signup.png)
 
-### 📧 Email Verification
+### Email Verification
 ![Verify Email](assets/screenshots/verify-email.png)
 
-### 📧 Email Verification Mail
+### Email Verification Mail
 
 ![Email Verification](assets/screenshots/mail-verify.png)
 
-### 🔑 Login Page
+### Login Page
 ![Login](assets/screenshots/login.png)
 
-### 🔐 Admin Portal Key
+### Admin Portal Key
 ![Portal Key](assets/screenshots/portal-key.png)
 
-### 📊 Dashboard
+### Dashboard
 ![Dashboard](assets/screenshots/dashboard.png)
 
-### 👨‍🎓 Students List
+### Students List
 ![Students](assets/screenshots/students.png)
 
-### ➕ Add Student
+### Add Student
 ![Add Student](assets/screenshots/add-student.png)
 
-### 💳 Fee Management
+### Fee Management
 ![Fees](assets/screenshots/fees.png)
 
-### 📈 Reports Page
+### Reports Page
 ![Reports](assets/screenshots/reports.png)
 
-
-
 ---
 
-## ⚙️ Installation Guide
-
-### 1️⃣ Clone Repository
-```bash
-git clone https://github.com/YOUR_USERNAME/student-fee-management.git
-```
-
----
-
-### 2️⃣ Backend Setup
-```bash
-cd backend
-npm install
-npm start
-```
-
----
-
-### 3️⃣ Frontend Setup
-```bash
-cd frontend
-npm install
-npm start
-```
-
----
-
-## 🌟 Future Enhancements
-
-- Export reports as PDF
-- Student search & filtering
-- Dark mode toggle
-- Payment history timeline
-- Analytics charts
-
----
-
-## 👨‍💻 Author
+## Author
 
 **Shahiduddin Shaikh**  
 Computer Engineering Student  
 Vidyavardhini College of Engineering
 
 ---
-
-## 📌 License
-
-This project is developed for educational and academic purposes.
