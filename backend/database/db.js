@@ -5,6 +5,7 @@ dotenv.config();
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
+  port: process.env.DB_PORT || 3306,
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "student_fee_management",
@@ -13,15 +14,18 @@ const pool = mysql.createPool({
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 const testConnection = async () => {
   try {
     const connection = await pool.getConnection();
-    console.log(" MySQL connected successfully");
+    console.log("MySQL connected successfully");
     connection.release();
   } catch (err) {
-    console.error(" MySQL connection failed:", err.message);
+    console.error("MySQL connection failed:", err.message);
     process.exit(1);
   }
 };

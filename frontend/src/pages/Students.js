@@ -14,7 +14,7 @@ export default function Students() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8000/api/students");
+     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/students`);
       const data = await res.json();
 
       if (data.success) {
@@ -41,7 +41,7 @@ export default function Students() {
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/students/${deleteId}`,
+        `${process.env.REACT_APP_API_URL}/api/students/${deleteId}`,
         { method: "DELETE" }
       );
 

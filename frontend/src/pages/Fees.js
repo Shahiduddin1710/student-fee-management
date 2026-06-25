@@ -14,7 +14,7 @@ export default function Fees() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8000/api/students");
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/students`);
       const data = await res.json();
 
       if (data.success) {
@@ -63,7 +63,7 @@ export default function Fees() {
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/students/${student.student_id}/payment`,
+       `${process.env.REACT_APP_API_URL}/api/students/${student.student_id}/payment`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

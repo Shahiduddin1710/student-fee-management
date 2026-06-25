@@ -13,7 +13,7 @@ export default function Reports() {
 
     try {
       const res = await fetch(
-        "http://localhost:8000/api/students/reports/summary"
+       `${process.env.REACT_APP_API_URL}/api/students/reports/summary`
       );
 
       const data = await res.json();

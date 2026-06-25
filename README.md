@@ -1,6 +1,8 @@
 # Student Fee Management System
 
-A full-stack SaaS-based Student Fee Management Portal built for **Vidyavardhini College of Engineering (VCET)**.
+🔗 **Live Demo:** [student-fees-management-lilac.vercel.app](https://student-fees-management-lilac.vercel.app)
+
+A web-based Student Fee Management Portal.
 
 This system allows administrators to manage students, track fee payments, calculate pending amounts, and generate financial summaries securely.
 
@@ -59,6 +61,7 @@ This system allows administrators to manage students, track fee payments, calcul
 - Express.js
 - MySQL
 - JWT Authentication
+- Brevo (Emails)
 
 ---
 
